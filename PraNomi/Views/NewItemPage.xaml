@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PraNomi.Views.NewItemPage"
+             Shell.PresentationMode="ModalAnimated"
+             xmlns:local="clr-namespace:PraNomi.ViewModels"
+             Title="New Item"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true">
+    <ContentPage.Content>
+        <StackLayout Spacing="3" Padding="15">
+            <Label Text="Fatura Adı" FontSize="Medium" />
+            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+            <Label Text="Belge Tarihi" FontSize="Medium" />
+            <!-- <Entry Text="{Binding Description, Mode=TwoWay}" FontSize="Medium" />-->                
+            <DatePicker
+                Format="d"
+                x:Name="MainDatePicker"
+                Date="{Binding Date}">
+            </DatePicker>
+            
+            <TimePicker Time="{Binding Time}" Format="t"/>
+            
+            <Label
+                IsVisible="false"
+                x:Name="MainLabel"
+                Text="{Binding Date, Source={x:Reference MainDatePicker}}"
+                FontSize="10"
+                HorizontalOptions="Center">
+            </Label>
+            <Label  Text="Fiyat" FontSize="Medium" />
+            <Entry  Keyboard="Numeric"   Text="{Binding Price, Mode=TwoWay}" PlaceholderColor="LightGray" />
+
+            <Picker ItemDisplayBinding="{Binding CustomerName}" 
+                 
+                    x:Name="CustomerEntry"
+                    Title="Müşteri Seç"
+                    ItemsSource="{Binding Customers.CustomerList}"
+                    SelectedIndexChanged="Button_Clicked">
+              
+                
+            </Picker>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="İPTAL" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="KAYDET" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="Green" BorderColor="Green"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>    
+</ContentPage>

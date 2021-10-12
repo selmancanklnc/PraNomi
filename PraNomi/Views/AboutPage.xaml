@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PraNomi.Views.AboutPage"
+             xmlns:vm="clr-namespace:PraNomi.ViewModels"
+             Title="{Binding Title}">
+    
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#f17899</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <StackLayout>
+        <ListView BackgroundColor="Transparent"
+                  x:Name="faturas"
+                  HasUnevenRows="True">
+          
+        <ListView.ItemTemplate>
+            <DataTemplate >
+                <ViewCell>
+                    <Grid Padding="10">
+                        <Frame Grid.Column="0" Grid.Row="0">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout VerticalOptions="Center">
+
+                                    <Label 
+                                        
+                                        VerticalOptions="Center"
+                                        FontSize="Large"
+                                        Text="{Binding Text}"/>
+
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        <Frame Grid.Column="0" Grid.Row="1">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout VerticalOptions="Center">
+                                    
+                                    <Label 
+                                       VerticalOptions="Center"
+                                       FontSize="Large"
+                                       Text="Gelir 2"/>
+                                    
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+
+
+
+        <!--<Button
+            Text="Fatura Ekle"
+            Margin="0,0,0,10"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+        </Button>-->
+    </StackLayout>
+</ContentPage>

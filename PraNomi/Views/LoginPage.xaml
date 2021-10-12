@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:PraNomi.ViewModels"
+             mc:Ignorable="d"
+             x:Class="PraNomi.Views.LoginPage"
+             Shell.NavBarIsVisible="False">
+   
+    
+    <StackLayout Margin="20" Orientation="Vertical" VerticalOptions="CenterAndExpand">
+        <Entry x:Name="UserName" Placeholder="UserName" />
+        <Grid>
+              <Entry x:Name="UserPassword"
+               Placeholder="Password"
+               IsPassword="{Binding Source= {x:Reference ShowPasswordActualTrigger} ,
+                Path=HidePassword}"
+                  />
+            <ImageButton VerticalOptions="Center" Margin="0,0,10,0"
+                     HeightRequest="20"
+                     HorizontalOptions="End"
+                     Source="ice_eye_hide">
+                <ImageButton.Triggers>
+                    <EventTrigger Event="Clicked">
+                        <local:ShowPasswordTriggerAction  
+                            ShowIcon="ice_eye"
+                            HideIcon="ice_eye_hide"
+                            x:Name="ShowPasswordActualTrigger"/>
+                    </EventTrigger>
+                </ImageButton.Triggers>
+              </ImageButton>
+       
+
+        </Grid>
+        <Button Text="Login" Clicked="Button_Clicked" Background="#f17899"  TextColor="White" Margin="30"/>
+    </StackLayout>
+</ContentPage>

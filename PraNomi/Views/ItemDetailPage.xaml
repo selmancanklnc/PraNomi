@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:PraNomi.ViewModels" x:DataType="viewmodels:ItemDetailViewModel"
+             x:Class="PraNomi.Views.ItemDetailPage"
+             Title="{Binding Title}">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Fatura Adı:" FontSize="Medium" />
+        <Label Text="{Binding Text}" FontSize="Small"/>
+        
+        <Label Text="Fatura Tarihi:" FontSize="Medium" />
+        <Label
+             Text="{Binding Date, StringFormat='{dd-MM-yyyy HH:mm}'}"
+             FontSize="Small"/>
+        
+        <Label Text="Fiyat:" FontSize="Medium" />
+        <Label Text="{Binding Price}" FontSize="Small"/>
+
+        <Label Text="Müşteri:" FontSize="Medium" />
+        <Label Text="{Binding CustomerName}" FontSize="Small"/>
+    </StackLayout>
+    
+</ContentPage>
