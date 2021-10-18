@@ -8,6 +8,13 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#f17899</Color>
+            <Style TargetType="BoxView"
+                   x:Key="SeparatorBoxView">
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="Color" Value="Gray"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="Opacity" Value="0.1"/>
+            </Style>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">

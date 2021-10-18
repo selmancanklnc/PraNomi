@@ -16,8 +16,12 @@ namespace PraNomi.ViewModels
             try
             {
                 CustomerList = new ObservableCollection<Customer>();
-                CustomerList.Add(new Customer { CustomerPhone = "05355554025", CustomerName = "Müşteri 1" });
-                CustomerList.Add(new Customer { CustomerPhone = "05355554029", CustomerName = "Müşteri 2" });
+                for (int i = 0; i < 100; i++)
+                {
+
+                    CustomerList.Add(new Customer { CustomerPhone = "05355554025", CustomerName = $"Müşteri {Guid.NewGuid():N}" });
+                }
+
             }
             catch (Exception ex)
             {

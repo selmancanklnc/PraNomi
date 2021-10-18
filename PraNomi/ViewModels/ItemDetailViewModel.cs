@@ -66,7 +66,7 @@ namespace PraNomi.ViewModels
                 Price = item.Price;
                 CustomerName = item.CustomerName;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 Debug.WriteLine("Failed to Load Item");
             }

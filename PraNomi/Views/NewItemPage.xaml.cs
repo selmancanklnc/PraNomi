@@ -36,5 +36,14 @@ namespace PraNomi.Views
         {
             MainLabel.Text = e.NewDate.ToString();
         }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+
+            
+
+            
+        }
     }
 }
