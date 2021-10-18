@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PraNomi"
+             x:Class="PraNomi.Views.CustomersPage">
+  
+        <StackLayout Orientation="Vertical">
+
+            <SearchBar x:Name="ColorSearchBar" 
+                       BackgroundColor="LightGray"
+                       
+                       SearchButtonPressed="ColorSearchBar_SearchButtonPressed"
+                       TextChanged="ColorSearchBar_TextChanged"/>
+        <Grid>
+           
+            <ListView x:Name="ColorsListView"/>
+            <ListView x:Name="SuggestionsListView"
+                      ItemTapped="ColorsListView_ItemTapped"
+                      />
+          
+         
+          
+        </Grid>
+
+        
+            
+     
+            <Button IsVisible="False"
+                x:Name="Ekle_Button"
+                Text="Oluştur"
+                Clicked="Button_add"
+                HeightRequest="50"
+                VerticalOptions="Start"
+                HorizontalOptions="Center">
+
+            </Button>
+
+       
+            
+            
+    </StackLayout>
+
+    
+
+
+
+</ContentPage>

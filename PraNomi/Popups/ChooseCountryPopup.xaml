@@ -25,19 +25,19 @@
         <StackLayout Spacing="8">
             <StackLayout Orientation="Horizontal" 
                          HorizontalOptions="FillAndExpand">
-                <Button Text="Cancel"
+                <Button Text="İptal"
                         TextColor="Indigo"
                         BackgroundColor="Transparent"
                         Clicked="CloseBtn_Clicked"
                         HorizontalOptions="Start" />
-                <Label Text="Select your country"
+                <Label Text="Müşteriler"
                        FontSize="18"
                        FontAttributes="Bold"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="Center"
                        HeightRequest="60"
                        HorizontalOptions="CenterAndExpand" />
-                <Button Text="Done" 
+                <Button Text="Tamam" 
                         BackgroundColor="Transparent"
                         TextColor="Indigo"
                         Clicked="ConfirmBtn_Clicked"
@@ -50,7 +50,7 @@
                    CornerRadius="8"
                    HasShadow="False"
                    BorderColor="Silver">
-                <SearchBar Placeholder="Search for country"
+                <SearchBar Placeholder="Müşteri Ara"
                            Margin="{OnPlatform iOS='-6, -10', Android='2'}"
                            x:Name="SearchBar"
                            PlaceholderColor="Silver"
@@ -58,12 +58,12 @@
                            TextChanged="SearchBar_OnTextChanged"
                            BackgroundColor="White"/>
             </Frame>
-            <Label Text="Selected"
+            <Label Text="Seçilen"
                    FontSize="14"
                    Margin="0,0,0,10"/>
             <controls:CountryControl x:Name="CurrentCountryControl" />
             <BoxView Style="{StaticResource SeparatorBoxView}"/>
-            <Label Text="Countries"
+            <Label Text="Müşteriler"
                    FontSize="14"/>
             <ListView x:Name="CommonCountriesList"
                       CachingStrategy="RetainElement"
