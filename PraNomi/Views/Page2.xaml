@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<animations:PopupPage  xmlns:animations="http://rotorgames.com" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PraNomi.Views.Page2">
+    
+    <StackLayout>
+        <ListView x:Name="listView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="{Binding Text}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                            <CheckBox IsChecked="{Binding IsChecked}" HorizontalOptions="EndAndExpand" Color="Black"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Done" Clicked="Button_Clicked" HorizontalOptions="Center" WidthRequest="100" VerticalOptions="EndAndExpand"/>
+    </StackLayout>
+</animations:PopupPage>

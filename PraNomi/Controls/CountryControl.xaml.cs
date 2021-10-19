@@ -35,6 +35,8 @@ namespace PraNomi.Controls
         {
             CountryCodeLabel.Text = $"(+{model?.CountryCode})";
             CountryNameLabel.Text = model?.CountryName;
+            CountryCodeLabel1.Text = $"(+{model?.CountryCode})";
+            CountryNameLabel1.Text = model?.CountryName;
             if (!string.IsNullOrEmpty(model?.FlagUrl))
             {
                 FlagImage.Source = ImageSource.FromUri(new Uri(model?.FlagUrl));

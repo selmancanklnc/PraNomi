@@ -8,13 +8,42 @@
     <forms:SvgCachedImage x:Name="FlagImage"
                           HeightRequest="26" 
                           WidthRequest="26" />
-    <Label x:Name="CountryNameLabel"
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.8*" />
+            <ColumnDefinition Width="0.2*" />           
+        </Grid.ColumnDefinitions>
+        <Label x:Name="CountryNameLabel"
            Margin="12,0"
            FontSize="18"
            VerticalOptions="Center"
-           HorizontalOptions="FillAndExpand"/>
+           HorizontalOptions="FillAndExpand"
+                   Grid.Row="0"
+               Grid.Column="0"
+                   />  
     <Label x:Name="CountryCodeLabel"
            FontSize="18"
            VerticalOptions="Center"
-           HorizontalTextAlignment="End"/>
-    </StackLayout>
+           HorizontalTextAlignment="End"
+            Grid.Row="0"
+           Grid.Column="1"
+                  />
+    
+    <Label x:Name="CountryNameLabel1"
+           Margin="12,0"
+           FontSize="18"
+           VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+            Grid.Row="1"
+           Grid.Column="0"
+           
+                   />  
+    <Label x:Name="CountryCodeLabel1"
+           FontSize="18"
+           VerticalOptions="Center"
+           HorizontalTextAlignment="End" Grid.Row="1"
+           Grid.Column="1"
+           
+                  />
+    </Grid>
+</StackLayout>

@@ -55,7 +55,20 @@
                                HorizontalTextAlignment="End"
                                HorizontalOptions="EndAndExpand"
                                VerticalOptions="CenterAndExpand"/>
+                        <!--<Label Text="{Binding SelectedCountry.CountryName}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Start"
+                               Margin="10,0"
+                               HorizontalOptions="Start"
+                               VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding SelectedCountry.CountryCode, StringFormat='(+{0})'}"
+                               VerticalTextAlignment="Center"
+                               Margin="20,0"
+                               HorizontalTextAlignment="End"
+                               HorizontalOptions="EndAndExpand"
+                               VerticalOptions="CenterAndExpand"/>-->
                     </StackLayout>
+                    
                 </Frame>
             </StackLayout>
         </ScrollView>

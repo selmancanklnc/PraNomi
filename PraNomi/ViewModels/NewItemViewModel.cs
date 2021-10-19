@@ -18,6 +18,7 @@ namespace PraNomi.ViewModels
         private string price;
         private string customerName;
         private CustomerViewModel customers;
+        private List<string> selectedProducts;
         #region Fields
 
         private CountryModel _selectedCountry;
@@ -75,15 +76,20 @@ namespace PraNomi.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
+            return !String.IsNullOrWhiteSpace(text);
 
-                && !String.IsNullOrWhiteSpace(price);
+            //&& !String.IsNullOrWhiteSpace(price);
         }
 
         public string Text
         {
             get => text;
             set => SetProperty(ref text, value);
+        }
+        public List<string> SelectedProducts
+        {
+            get => selectedProducts;
+            set => SetProperty(ref selectedProducts, value);
         }
 
         public DateTime Date
@@ -107,7 +113,7 @@ namespace PraNomi.ViewModels
         {
             get => customerName;
             set => SetProperty(ref customerName, value);
-        } 
+        }
         public CustomerViewModel Customers
         {
             get => customers;
@@ -131,8 +137,9 @@ namespace PraNomi.ViewModels
                 Text = Text,
                 Date = new DateTime(Date.Year, Date.Month, Date.Day, Time.Hours, Time.Minutes, 0),
                 Price = Price,
-                CustomerName = CustomerName
-            
+                CustomerName = CustomerName,
+                SelectedProdcuts = SelectedProducts
+
             };
 
             await DataStore.AddItemAsync(newItem);

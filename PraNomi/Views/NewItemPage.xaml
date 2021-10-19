@@ -28,23 +28,124 @@
             <Label Text="Fatura Adı" FontSize="Medium" />
             <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
             <Label Text="Belge Tarihi" FontSize="Medium" />
-            <!-- <Entry Text="{Binding Description, Mode=TwoWay}" FontSize="Medium" />-->                
+            <!-- <Entry Text="{Binding Description, Mode=TwoWay}" FontSize="Medium" />-->
             <DatePicker
                 Format="d"
                 x:Name="MainDatePicker"
                 Date="{Binding Date}">
             </DatePicker>
-            
+
             <TimePicker Time="{Binding Time}" Format="t"/>
             <Label IsVisible="false" x:Name="MainLabel" Text="{Binding Date, Source={x:Reference MainDatePicker}}" FontSize="10" HorizontalOptions="Center"/>
 
-            <Label  Text="Fiyat" FontSize="Medium" />
-            <Entry  Keyboard="Numeric"   Text="{Binding Price, Mode=TwoWay}" PlaceholderColor="LightGray" />
+            <!--<Label  Text="Fiyat" FontSize="Medium" />
+            <Entry  Keyboard="Numeric"   Text="{Binding Price, Mode=TwoWay}" PlaceholderColor="LightGray" />-->
+
+
+            <Label  Text="Müşteri" FontSize="Medium" Margin="0,5,0,5"/>
+           
+            <AbsoluteLayout>
+
+                <StackLayout>
+
+                    <Entry TextChanged="SearchBar_OnTextChanged" 
+                       BackgroundColor="#f9f9f9" 
+                       TextColor="#FF464859" 
+                       FontSize="16" 
+                       WidthRequest="380"
+                       PlaceholderColor="#646b7a" 
+                       x:Name="searchBar" 
+                       Placeholder="Müşteri Seçin" 
+                       AbsoluteLayout.LayoutBounds="0,0,380,37" 
+                       AbsoluteLayout.LayoutFlags="None"/>
+                <ListView x:Name="countryListView" 
+                          IsVisible="False"   
+                          CachingStrategy="RecycleElement" 
+                          BackgroundColor="White" 
+                          ItemTapped="ListView_OnItemTapped" 
+                          AbsoluteLayout.LayoutBounds="0,37,380,160" 
+                          AbsoluteLayout.LayoutFlags="None">
+                    
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame>
+                                    <StackLayout BackgroundColor="White">
+                                        <Label Text="{Binding .}" FontSize="16" TextColor="#FF464859"/>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+              
+                        <Label  Text="Ürün" FontSize="Medium" Margin="0,5,0,5"/>
+
+
+
+
+                    <Entry
+                        Placeholder="Ürün Seçin" 
+                        Focused="Entry_Focused" x:Name="entry_2"
+                        >
+                        
+                    </Entry>
+                    
+                    
+                    
+                    
+                    
+                        <Button Text="Ürün Ekle" Clicked="Button_Product"/>
+
+                    <!--<AbsoluteLayout>
+
+                        <StackLayout>
+
+                            <Entry TextChanged="SearchBar_OnTextChanged_2" 
+                       BackgroundColor="#f9f9f9" 
+                       TextColor="#FF464859" 
+                       FontSize="16" 
+                       WidthRequest="380"
+                       PlaceholderColor="#646b7a" 
+                       x:Name="searchBar_2" 
+                       Placeholder="Ürün Seçin" 
+                       AbsoluteLayout.LayoutBounds="0,0,380,37" 
+                       AbsoluteLayout.LayoutFlags="None"/>
+                            <ListView x:Name="countryListView_2" 
+                          IsVisible="False"   
+                          CachingStrategy="RecycleElement" 
+                          BackgroundColor="White" 
+                          ItemTapped="ListView_OnItemTapped_2" 
+                          AbsoluteLayout.LayoutBounds="0,37,380,160" 
+                          AbsoluteLayout.LayoutFlags="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Frame>
+                                                <StackLayout BackgroundColor="White">
+                                                    <Label Text="{Binding .}" FontSize="16" TextColor="#FF464859"/>
+                                                </StackLayout>
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+
+                        </StackLayout>
+
+                    </AbsoluteLayout>-->
+
+ 
+
+                </StackLayout>
+               
+            </AbsoluteLayout>
 
             
-                <Label  Text="Müşteri" FontSize="Medium"/>
-               
-           
+
+
 
 
 
@@ -99,7 +200,7 @@
             </Grid>-->
 
 
-            <Picker 
+            <!--<Picker 
                 ItemDisplayBinding="{Binding CustomerName}" 
                 x:Name="CustomerEntry"
                 Title="Müşteri Seç"
@@ -113,14 +214,7 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 Clicked="Button_Customer"
-                />
-
-
-
-              
-
-
-
+                />-->
 
             <StackLayout Orientation="Horizontal">
                 <Button Text="İPTAL" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>

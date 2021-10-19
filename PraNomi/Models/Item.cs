@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PraNomi.Models
 {
@@ -9,5 +10,6 @@ namespace PraNomi.Models
         public DateTime Date { get; set; }
         public string Price { get; set; }
         public string CustomerName { get; set; }
+        public List<string> SelectedProdcuts { get; set; } = new List<string>();
     }
 }
