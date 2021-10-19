@@ -13,11 +13,15 @@
              Text="{Binding Date, StringFormat='{dd-MM-yyyy HH:mm}'}"
              FontSize="Small"/>
         
-        <Label Text="Fiyat:" FontSize="Medium" />
-        <Label Text="{Binding Price}" FontSize="Small"/>
+        <!--<Label Text="Fiyat:" FontSize="Medium" />
+        <Label Text="{Binding Price}" FontSize="Small"/>-->
 
         <Label Text="Müşteri:" FontSize="Medium" />
-        <Label Text="{Binding CustomerName}" FontSize="Small"/>
+        <Label Text="{Binding Customer}" FontSize="Small"/>
+
+        <Label Text="Ürün:" FontSize="Medium" />
+        <Label Text="{Binding SelectedProducts}" FontSize="Small"/>
+
     </StackLayout>
     
 </ContentPage>

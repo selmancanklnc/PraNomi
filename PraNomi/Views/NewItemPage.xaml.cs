@@ -29,6 +29,8 @@ namespace PraNomi.Views
                 Date = DateTime.Now,
                 Time = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, 0),
                 Customers = new CustomerViewModel()
+
+
             };
 
             BindingContext = model;
@@ -90,6 +92,8 @@ namespace PraNomi.Views
 
             String listsd = e.Item as string;
             searchBar.Text = listsd;
+            model.Customer = listsd;
+
             countryListView.IsVisible = false;
 
             ((ListView)sender).SelectedItem = null;

@@ -10,6 +10,7 @@ namespace PraNomi.Models
         public DateTime Date { get; set; }
         public string Price { get; set; }
         public string CustomerName { get; set; }
-        public List<string> SelectedProdcuts { get; set; } = new List<string>();
+        public string Customer { get; set; }
+        public List<string> SelectedProducts { get; set; } = new List<string>();
     }
 }

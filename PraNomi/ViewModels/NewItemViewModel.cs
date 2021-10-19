@@ -17,6 +17,8 @@ namespace PraNomi.ViewModels
         private TimeSpan time;
         private string price;
         private string customerName;
+        private string customer;
+      
         private CustomerViewModel customers;
         private List<string> selectedProducts;
         #region Fields
@@ -108,12 +110,19 @@ namespace PraNomi.ViewModels
             get => price;
             set => SetProperty(ref price, value);
         }
+        public string Customer
+        {
+            get => customer;
+            set => SetProperty(ref customer, value);
+        }
 
         public string CustomerName
         {
             get => customerName;
             set => SetProperty(ref customerName, value);
         }
+
+        
         public CustomerViewModel Customers
         {
             get => customers;
@@ -137,8 +146,9 @@ namespace PraNomi.ViewModels
                 Text = Text,
                 Date = new DateTime(Date.Year, Date.Month, Date.Day, Time.Hours, Time.Minutes, 0),
                 Price = Price,
+                Customer = Customer,
                 CustomerName = CustomerName,
-                SelectedProdcuts = SelectedProducts
+                SelectedProducts = SelectedProducts
 
             };
 
