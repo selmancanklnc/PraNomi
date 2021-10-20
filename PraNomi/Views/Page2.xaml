@@ -4,19 +4,24 @@
              x:Class="PraNomi.Views.Page2">
     
     <StackLayout>
-        <ListView x:Name="listView">
+        <SearchBar x:Name="ColorSearchBar" 
+                       BackgroundColor="LightGray"   
+                       SearchButtonPressed="ColorSearchBar_SearchButtonPressed"
+                       TextChanged="ColorSearchBar_TextChanged"/>
+        <Button Text="Yeni Ürün Ekle" Clicked="Button_Add_Product" HorizontalOptions="CenterAndExpand" Margin="0,10,0,0" BackgroundColor="Green"    />
+        <ListView x:Name="listView" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                            <Label Text="{Binding Text}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
-                            <CheckBox IsChecked="{Binding IsChecked}" HorizontalOptions="EndAndExpand" Color="Black"/>
+                            <Image Source="product.png" />
+                            <Label Text="{Binding productName}" VerticalOptions="Center" Padding="20,0,10,0"  HorizontalOptions="StartAndExpand"/>
+                            <CheckBox IsChecked="{Binding IsChecked}" HorizontalOptions="EndAndExpand" Margin="0,0,10,0" Color="Black"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-        <Button Text="Done" Clicked="Button_Clicked" HorizontalOptions="Center" WidthRequest="100" VerticalOptions="EndAndExpand"/>
+        <Button Text="Seç" Clicked="Button_Clicked" HorizontalOptions="Center" WidthRequest="100" Margin="0,5,0,0" VerticalOptions="EndAndExpand"/>
     </StackLayout>
 </animations:PopupPage>

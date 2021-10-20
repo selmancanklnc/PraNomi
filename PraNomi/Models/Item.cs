@@ -11,6 +11,7 @@ namespace PraNomi.Models
         public string Price { get; set; }
         public string CustomerName { get; set; }
         public string Customer { get; set; }
+        public string Tax { get; set; }
         public List<string> SelectedProducts { get; set; } = new List<string>();
     }
 }

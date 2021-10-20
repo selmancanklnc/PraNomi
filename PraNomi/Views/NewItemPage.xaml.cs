@@ -16,7 +16,7 @@ namespace PraNomi.Views
     {
 
         ObservableCollection<string> data = new ObservableCollection<string>();
-
+        //public List<Product> Temp = new List<Product>();
         public Item Item { get; set; }
         public NewItemViewModel model { get; set; }
         public NewItemPage()
@@ -36,7 +36,6 @@ namespace PraNomi.Views
             BindingContext = model;
 
         }
-
         public async void ListOfStore() //List of Countries  
         {
             try
@@ -142,11 +141,11 @@ namespace PraNomi.Views
         {
             base.OnAppearing();
 
-            MessagingCenter.Subscribe<object, string>(this, "Hi", (obj, s) =>
+            MessagingCenter.Subscribe<object, List<Product>>(this, "Hi", (obj, s) =>
             {
-                entry_2.Text = s;
-                model.SelectedProducts = s.Split(',').ToList();
-
+                entry_2.Text = string.Join(",", s.Select(x => x.productName));
+                model.SelectedProducts = s.Select(x => x.UniqueIdentifier).ToList();
+                //Temp = s;
             });
         }
     }

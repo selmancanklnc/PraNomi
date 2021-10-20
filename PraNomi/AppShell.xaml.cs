@@ -17,12 +17,13 @@ namespace PraNomi
             Routing.RegisterRoute(nameof(CustomersPage), typeof(CustomersPage));
             Routing.RegisterRoute(nameof(ProductPage), typeof(ProductPage));
             Routing.RegisterRoute(nameof(Page2), typeof(Page2));
-            Task.Run(() => Shell.Current.GoToAsync("//AboutPage"));
+            Routing.RegisterRoute(nameof(Page3), typeof(Page3));
+            Task.Run(() => Shell.Current.GoToAsync("//LoginPage"));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//AboutPage");
+            await Shell.Current.GoToAsync("//LoginPage");
         }
     }
 }

@@ -13,12 +13,13 @@ using Xamarin.Forms.Xaml;
 namespace PraNomi.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    [QueryProperty(nameof(Selected), nameof(Selected))]
 
     public partial class Page2 : PopupPage
     {
 
-
-        public ProductSelectViewModel model = new ProductSelectViewModel();
+        public static string Selected { get; set; }
+        public ProductSelectViewModel model = new ProductSelectViewModel(Selected);
         public Page2()
         {
             InitializeComponent();
@@ -44,8 +45,45 @@ namespace PraNomi.Views
 
 
 
-            MessagingCenter.Send<object, string>(this, "Hi", string.Join(",", model.ProductList.Where(x => x.IsChecked).Select(x => x.Text)));
+            MessagingCenter.Send<object, List<Product>>(this, "Hi", model.ProductList.Where(x => x.IsChecked).ToList());
         }
+
+        private async void Button_Add_Product(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(Page3));
+        }
+        void ColorSearchBar_SearchButtonPressed(object sender, EventArgs e)
+        {
+
+        }
+        private void ColorSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //var keyword = ColorSearchBar.Text;
+            //if (keyword.Length >= 1)
+            //{
+            //    var suggestions = model.ProductList.Where(c => c.UniqueIdentifier.ToLower().Contains(keyword.ToLower()));
+
+            //    listView.ItemsSource = suggestions;
+
+            //    listView.IsVisible = true;
+            //}
+            //else
+            //{
+            //    listView.ItemsSource = model.ProductList;
+            //}
+            //ColorSearchBar.Focus();
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Shell.Current.Navigation.PopAsync();
+            });
+
+            return true;
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

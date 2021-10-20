@@ -1,4 +1,5 @@
 ﻿using PraNomi.Models;
+using PraNomi.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,25 +9,33 @@ using Xamarin.Forms;
 
 namespace PraNomi.ViewModels
 {
-    [QueryProperty(nameof(Selected), nameof(Selected))]
     public class ProductSelectViewModel : BaseViewModel
     {
-        public ProductSelectViewModel()
+        public ProductSelectViewModel(string selected)
         {
-            productList.Add(new ProductSelectModel() { Text = "A" });
-            productList.Add(new ProductSelectModel() { Text = "B" });
-            productList.Add(new ProductSelectModel() { Text = "C" });
-            productList.Add(new ProductSelectModel() { Text = "D" });
+            var productResult = ProductServices.ProductList(1, 1);
+            productList = productResult.products;
+
+            Selected = selected ?? "";
         }
-        private List<ProductSelectModel> productList = new List<ProductSelectModel>();
-        private string selected;
+
+        private List<Product> productList = new List<Product>();
+        private string selected = "";
 
 
 
-        public List<ProductSelectModel> ProductList
+        public List<Product> ProductList
         {
-            get => productList;
-            set => SetProperty(ref productList, value);
+            get
+            {
+                //CheckItems(selected.Split(',').ToList()); 
+                return productList;
+            }
+            set
+            {
+                SetProperty(ref productList, value);
+                CheckItems(selected.Split(',').ToList());
+            }
         }
         public string Selected
         {
@@ -39,12 +48,11 @@ namespace PraNomi.ViewModels
                 selected = value;
                 CheckItems(selected.Split(',').ToList());
             }
-
         }
 
         public void CheckItems(List<string> selected)
         {
-            foreach (var item in ProductList.Where(x => selected.Contains(x.Text)))
+            foreach (var item in ProductList.Where(x => selected.Contains(x.UniqueIdentifier)))
             {
                 item.IsChecked = true;
             }

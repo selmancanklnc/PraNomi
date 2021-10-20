@@ -16,6 +16,7 @@ namespace PraNomi.ViewModels
         private string customerName;
         private string selectedProdcuts;
         private string customer;
+        private string tax;
 
         public string Id { get; set; }
 
@@ -23,6 +24,11 @@ namespace PraNomi.ViewModels
         {
             get => text;
             set => SetProperty(ref text, value);
+        }
+        public string Tax
+        {
+            get => tax;
+            set => SetProperty(ref tax, value);
         }
 
         public string Customer
@@ -81,6 +87,7 @@ namespace PraNomi.ViewModels
                 SelectedProducts = string.Join(", ", item.SelectedProducts);
                 CustomerName = item.CustomerName;
                 Customer = item.Customer;
+                Tax = item.Tax;
             }
             catch (Exception e)
             {

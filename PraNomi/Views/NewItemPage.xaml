@@ -91,12 +91,15 @@
                         >
                         
                     </Entry>
-                    
-                    
-                    
-                    
-                    
-                        <Button Text="Ürün Ekle" Clicked="Button_Product"/>
+
+                  
+                        
+                        
+                        
+
+
+
+                    <!--<Button Text="Ürün Ekle" Clicked="Button_Product"/>-->
 
                     <!--<AbsoluteLayout>
 

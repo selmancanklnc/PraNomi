@@ -3,6 +3,7 @@ using PraNomi.Popups;
 using PraNomi.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -18,9 +19,10 @@ namespace PraNomi.ViewModels
         private string price;
         private string customerName;
         private string customer;
-      
+        private string tax;
+
         private CustomerViewModel customers;
-        private List<string> selectedProducts;
+        private List<string> selectedProducts = new List<string>();
         #region Fields
 
         private CountryModel _selectedCountry;
@@ -78,15 +80,22 @@ namespace PraNomi.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text);
-
-            //&& !String.IsNullOrWhiteSpace(price);
+            return
+                !String.IsNullOrWhiteSpace(text)
+             && !String.IsNullOrWhiteSpace(customer);
+             //&& !selectedProducts.Any();
         }
 
         public string Text
         {
             get => text;
             set => SetProperty(ref text, value);
+        }
+
+        public string Tax
+        {
+            get => tax;
+            set => SetProperty(ref tax, value);
         }
         public List<string> SelectedProducts
         {
@@ -148,7 +157,8 @@ namespace PraNomi.ViewModels
                 Price = Price,
                 Customer = Customer,
                 CustomerName = CustomerName,
-                SelectedProducts = SelectedProducts
+                SelectedProducts = SelectedProducts,
+                Tax = Tax
 
             };
 
