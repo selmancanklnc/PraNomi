@@ -5,41 +5,208 @@
              Shell.PresentationMode="ModalAnimated"
              xmlns:local="clr-namespace:PraNomi.ViewModels"
              Title="New Item"
+             xmlns:vm="clr-namespace:PraNomi.ViewModels"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" 
+             xmlns:popups="http://rotorgames.com"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true">
+    
+     <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
-        <StackLayout Spacing="3" Padding="15">
+        <StackLayout 
+            Spacing="3" Padding="15">
             <Label Text="Fatura Adı" FontSize="Medium" />
             <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
             <Label Text="Belge Tarihi" FontSize="Medium" />
-            <!-- <Entry Text="{Binding Description, Mode=TwoWay}" FontSize="Medium" />-->                
+            <!-- <Entry Text="{Binding Description, Mode=TwoWay}" FontSize="Medium" />-->
             <DatePicker
                 Format="d"
                 x:Name="MainDatePicker"
                 Date="{Binding Date}">
             </DatePicker>
-            
-            <TimePicker Time="{Binding Time}" Format="t"/>
-            
-            <Label
-                IsVisible="false"
-                x:Name="MainLabel"
-                Text="{Binding Date, Source={x:Reference MainDatePicker}}"
-                FontSize="10"
-                HorizontalOptions="Center">
-            </Label>
-            <Label  Text="Fiyat" FontSize="Medium" />
-            <Entry  Keyboard="Numeric"   Text="{Binding Price, Mode=TwoWay}" PlaceholderColor="LightGray" />
 
-            <Picker ItemDisplayBinding="{Binding CustomerName}" 
-                 
-                    x:Name="CustomerEntry"
-                    Title="Müşteri Seç"
-                    ItemsSource="{Binding Customers.CustomerList}"
-                    SelectedIndexChanged="Button_Clicked">
-              
-                
+            <TimePicker Time="{Binding Time}" Format="t"/>
+            <Label IsVisible="false" x:Name="MainLabel" Text="{Binding Date, Source={x:Reference MainDatePicker}}" FontSize="10" HorizontalOptions="Center"/>
+
+            <!--<Label  Text="Fiyat" FontSize="Medium" />
+            <Entry  Keyboard="Numeric"   Text="{Binding Price, Mode=TwoWay}" PlaceholderColor="LightGray" />-->
+
+
+            <Label  Text="Müşteri" FontSize="Medium" Margin="0,5,0,5"/>
+           
+            <AbsoluteLayout>
+
+                <StackLayout>
+
+                    <Entry 
+                       TextChanged="SearchBar_OnTextChanged" 
+                       BackgroundColor="#f9f9f9" 
+                       TextColor="#FF464859" 
+                       FontSize="16" 
+                       WidthRequest="380"
+                       PlaceholderColor="#646b7a" 
+                       x:Name="searchBar_2" 
+                       Placeholder="Müşteri Seçin" 
+                       AbsoluteLayout.LayoutBounds="0,0,380,37" 
+                       AbsoluteLayout.LayoutFlags="None"/>
+                   
+                <ListView 
+                          x:Name="countryListView" 
+                          IsVisible="False"   
+                          CachingStrategy="RecycleElement"
+                          BackgroundColor="White"
+                          ItemTapped="ListView_OnItemTapped" 
+                          HasUnevenRows="True"
+                          HeightRequest="200"
+                          AbsoluteLayout.LayoutBounds="0,37,380,160" 
+                          AbsoluteLayout.LayoutFlags="None">
+                          
+                    
+                    
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame>
+                                    <StackLayout BackgroundColor="White">
+                                       <Label  Text="{Binding customerName}" FontSize="16" TextColor="#FF464859"/>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    
+                    
+                </ListView>
+
+                </StackLayout>
+            </AbsoluteLayout>
+
+
+            <Label  Text="Ürün" FontSize="Medium" Margin="0,5,0,5"/>
+                    <Entry
+                        Placeholder="Ürün Seçin" 
+                        Focused="Entry_Focused" x:Name="entry_2">
+                    </Entry>
+
+                    <!--<Button Text="Ürün Ekle" Clicked="Button_Product"/>-->
+
+                    <!--<AbsoluteLayout>
+
+                        <StackLayout>
+
+                            <Entry TextChanged="SearchBar_OnTextChanged_2" 
+                       BackgroundColor="#f9f9f9" 
+                       TextColor="#FF464859" 
+                       FontSize="16" 
+                       WidthRequest="380"
+                       PlaceholderColor="#646b7a" 
+                       x:Name="searchBar_2" 
+                       Placeholder="Ürün Seçin" 
+                       AbsoluteLayout.LayoutBounds="0,0,380,37" 
+                       AbsoluteLayout.LayoutFlags="None"/>
+                            <ListView x:Name="countryListView_2" 
+                          IsVisible="False"   
+                          CachingStrategy="RecycleElement" 
+                          BackgroundColor="White" 
+                          ItemTapped="ListView_OnItemTapped_2" 
+                          AbsoluteLayout.LayoutBounds="0,37,380,160" 
+                          AbsoluteLayout.LayoutFlags="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Frame>
+                                                <StackLayout BackgroundColor="White">
+                                                    <Label Text="{Binding .}" FontSize="16" TextColor="#FF464859"/>
+                                                </StackLayout>
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+
+                        </StackLayout>
+
+                    </AbsoluteLayout>-->
+
+               
+               
+          
+
+            <!--<Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <ScrollView Grid.Row="1">
+                    <StackLayout Orientation="Vertical" Padding="0" Spacing="10">
+                    
+                        <Frame
+                    CornerRadius="10"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="0,0,0,0"
+                    Padding="0"
+                    BorderColor="Gray"
+                    IsClippedToBounds="True"
+                    BackgroundColor="White">
+                            <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ShowPopupCommand}"/>
+                                </StackLayout.GestureRecognizers>
+                                <forms:SvgCachedImage
+                            HeightRequest="26"
+                            Source="{Binding SelectedCountry.FlagUrl}"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="26" 
+                            Margin="20,10,0,10"/>
+                                <Label Text="{Binding SelectedCountry.CountryName}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Start"
+                               Margin="10,0"
+                               HorizontalOptions="Start"
+                               VerticalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding SelectedCountry.CountryCode, StringFormat='(+{0})'}"
+                               VerticalTextAlignment="Center"
+                               Margin="20,0"
+                               HorizontalTextAlignment="End"
+                               HorizontalOptions="EndAndExpand"
+                               VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>-->
+
+            <!--<Picker 
+                ItemDisplayBinding="{Binding CustomerName}" 
+                x:Name="CustomerEntry"
+                Title="Müşteri Seç"
+                ItemsSource="{Binding Customers.CustomerList}"
+                SelectedIndexChanged="Button_Clicked">
             </Picker>
+
+
+            <Button
+                Text="Müşteri Ekle"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Clicked="Button_Customer"
+                />-->
+
             <StackLayout Orientation="Horizontal">
                 <Button Text="İPTAL" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="KAYDET" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="Green" BorderColor="Green"></Button>

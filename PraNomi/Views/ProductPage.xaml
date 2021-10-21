@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PraNomi.Views.ProductPage">
+    
+    
+    <ContentPage.Content>
+        <StackLayout Padding="10,0,10,0">
+            <SearchBar TextChanged="Handle_TextChanged" BackgroundColor="WhiteSmoke"></SearchBar>
+            <ListView  ItemsSource="{Binding MyListCollector}"
+                       IsPullToRefreshEnabled="True" 
+                       x:Name="EmployeeListView"
+                       HasUnevenRows="true" 
+                       SeparatorVisibility="Default" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50"  />
+                                <StackLayout HorizontalOptions="StartAndExpand">
+                                    <Label Text="{Binding MyName}"
+                                       FontAttributes="Bold" />
+                                    <Label Text="{Binding MyDetail}"
+                                       TextColor="Gray" />
+                                </StackLayout>
+                                <Button Text="Follow Me"
+                                    BorderColor="Silver"
+                                   FontSize="Small"
+                                   TextColor="White"
+                                   BackgroundColor="#3399ff"
+                                   VerticalOptions="Center"
+                                   Clicked="Handle_Clicked" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

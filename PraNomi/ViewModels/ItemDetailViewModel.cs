@@ -14,6 +14,9 @@ namespace PraNomi.ViewModels
         private DateTime date;
         private string price;
         private string customerName;
+        private string selectedProdcuts;
+        private string customer;
+        private string tax;
 
         public string Id { get; set; }
 
@@ -22,11 +25,28 @@ namespace PraNomi.ViewModels
             get => text;
             set => SetProperty(ref text, value);
         }
+        public string Tax
+        {
+            get => tax;
+            set => SetProperty(ref tax, value);
+        }
+
+        public string Customer
+        {
+            get => customer;
+            set => SetProperty(ref customer, value);
+        }
 
         public string CustomerName
         {
             get => customerName;
             set => SetProperty(ref customerName, value);
+        }
+
+        public string SelectedProducts
+        {
+            get => selectedProdcuts;
+            set => SetProperty(ref selectedProdcuts, value);
         }
 
         public DateTime Date
@@ -64,9 +84,12 @@ namespace PraNomi.ViewModels
                 Text = item.Text;
                 Date = item.Date;
                 Price = item.Price;
+                SelectedProducts = string.Join(", ", item.SelectedProducts);
                 CustomerName = item.CustomerName;
+                Customer = item.Customer;
+                Tax = item.Tax;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 Debug.WriteLine("Failed to Load Item");
             }

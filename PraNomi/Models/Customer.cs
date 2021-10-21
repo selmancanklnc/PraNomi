@@ -7,41 +7,32 @@ namespace PraNomi.Models
 {
     public partial class Customer
     {
-        [JsonProperty("addressLine")]
-        public string AddressLine { get; set; }
 
-        [JsonProperty("city")]
-        public string City { get; set; }
+        public string customerName { get; set; }
+        public string taxNumber { get; set; }
+        public string phone { get; set; }
+        public string mail { get; set; }
 
-        [JsonProperty("district")]
-        public string District { get; set; }
+        
+    }
 
-        [JsonProperty("neighborhood")]
-        public string Neighborhood { get; set; }
+    public class CustomerResponseModel
+    {
+        public int count { get; set; }
+        public int currentPage { get; set; }
+        public int currentSize { get; set; }
+        public int totalPages { get; set; }
+        public List<Customer> customers { get; set; }
+    }
+    public class CustomerSearchModel
+    {
 
-        [JsonProperty("zipCode")]
-        public string ZipCode { get; set; }
+        public string customerSearchQuery { get; set; }
+        [JsonProperty("page")]
+        public int? Page { get; set; }
+        [JsonProperty("size")]
+        public int? Size { get; set; }
 
-        [JsonProperty("country")]
-        public string Country { get; set; }
-
-        [JsonProperty("customerName")]
-        public string CustomerName { get; set; }
-
-        [JsonProperty("customerTaxNumber")]
-        public string CustomerTaxNumber { get; set; }
-
-        [JsonProperty("customerTaxOffice")]
-        public string CustomerTaxOffice { get; set; }
-
-        [JsonProperty("customerCitizenShipId")]
-        public string CustomerCitizenShipId { get; set; }
-
-        [JsonProperty("customerGsm")]
-        public string CustomerGsm { get; set; }
-
-        [JsonProperty("customerPhone")]
-        public string CustomerPhone { get; set; }
     }
 
 }

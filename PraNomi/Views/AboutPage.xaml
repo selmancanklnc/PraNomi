@@ -3,67 +3,75 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PraNomi.Views.AboutPage"
              xmlns:vm="clr-namespace:PraNomi.ViewModels"
-             Title="{Binding Title}">
-    
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" 
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             Title="Müşteriler">
+
     <ContentPage.BindingContext>
         <vm:AboutViewModel />
     </ContentPage.BindingContext>
-    
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Color x:Key="Accent">#f17899</Color>
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
+   
 
-    <StackLayout>
-        <ListView BackgroundColor="Transparent"
-                  x:Name="faturas"
-                  HasUnevenRows="True">
-          
-        <ListView.ItemTemplate>
-            <DataTemplate >
-                <ViewCell>
-                    <Grid Padding="10">
-                        <Frame Grid.Column="0" Grid.Row="0">
-                            <StackLayout Orientation="Horizontal">
-                                <StackLayout VerticalOptions="Center">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+      
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                <Label Text="Müşteriler" FontSize="16" Margin="1" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Frame
+                    CornerRadius="10"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="0,40,0,0"
+                    Padding="0"
+                    BorderColor="Gray"
+                    IsClippedToBounds="True"
+                    BackgroundColor="White">
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShowPopupCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                        <forms:SvgCachedImage
+                            HeightRequest="26"
+                            Source="{Binding SelectedCountry.FlagUrl}"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="26" 
+                            Margin="20,10,0,10"/>
+                        <Label Text="{Binding SelectedCountry.CountryName}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Start"
+                               Margin="10,0"
+                               HorizontalOptions="Start"
+                               VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding SelectedCountry.CountryCode, StringFormat='(+{0})'}"
+                               VerticalTextAlignment="Center"
+                               Margin="20,0"
+                               HorizontalTextAlignment="End"
+                               HorizontalOptions="EndAndExpand"
+                               VerticalOptions="CenterAndExpand"/>
+                        <!--<Label Text="{Binding SelectedCountry.CountryName}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Start"
+                               Margin="10,0"
+                               HorizontalOptions="Start"
+                               VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding SelectedCountry.CountryCode, StringFormat='(+{0})'}"
+                               VerticalTextAlignment="Center"
+                               Margin="20,0"
+                               HorizontalTextAlignment="End"
+                               HorizontalOptions="EndAndExpand"
+                               VerticalOptions="CenterAndExpand"/>-->
+                    </StackLayout>
+                    
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
 
-                                    <Label 
-                                        
-                                        VerticalOptions="Center"
-                                        FontSize="Large"
-                                        Text="{Binding Text}"/>
-
-                                </StackLayout>
-                            </StackLayout>
-                        </Frame>
-                        <Frame Grid.Column="0" Grid.Row="1">
-                            <StackLayout Orientation="Horizontal">
-                                <StackLayout VerticalOptions="Center">
-                                    
-                                    <Label 
-                                       VerticalOptions="Center"
-                                       FontSize="Large"
-                                       Text="Gelir 2"/>
-                                    
-                                </StackLayout>
-                            </StackLayout>
-                        </Frame>
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
-
-
-
-
-        <!--<Button
-            Text="Fatura Ekle"
-            Margin="0,0,0,10"
-            VerticalOptions="Center"
-            HorizontalOptions="Center">
-        </Button>-->
-    </StackLayout>
 </ContentPage>

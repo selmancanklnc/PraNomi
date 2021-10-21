@@ -1,7 +1,11 @@
 ﻿using PraNomi.Models;
+using PraNomi.Popups;
+using PraNomi.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -14,11 +18,60 @@ namespace PraNomi.ViewModels
         private TimeSpan time;
         private string price;
         private string customerName;
-        private CustomerViewModel customers;
+        private string customer;
+        private string tax;
 
+        private Customer customers;
+        private List<string> selectedProducts = new List<string>();
+        #region Fields
+
+        private CountryModel _selectedCountry;
+
+        #endregion Fields
+
+        #region Properties
+
+        public CountryModel SelectedCountry
+        {
+            get => _selectedCountry;
+            set => SetProperty(ref _selectedCountry, value);
+        }
+
+        #endregion Properties
+
+        #region Commands
+
+        public ICommand ShowPopupCommand { get; }
+        public ICommand CountrySelectedCommand { get; }
+
+        #endregion Commands
+
+
+        #region Private Methods
+
+        private Task ExecuteShowPopupCommand()
+        {
+            var popup = new ChooseCountryPopup(SelectedCountry)
+            {
+                CountrySelectedCommand = CountrySelectedCommand
+            };
+            return Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popup);
+        }
+
+        private void ExecuteCountrySelectedCommand(CountryModel country)
+        {
+            SelectedCountry = country;
+        }
+
+        #endregion Private Methods
 
         public NewItemViewModel()
         {
+
+            Title = "About";
+            SelectedCountry = CountryUtils.GetCountryModelByName("United States");
+            ShowPopupCommand = new Command(async _ => await ExecuteShowPopupCommand());
+            CountrySelectedCommand = new Command(country => ExecuteCountrySelectedCommand(country as CountryModel));
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
@@ -27,15 +80,27 @@ namespace PraNomi.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
-
-                && !String.IsNullOrWhiteSpace(price);
+            return
+                !String.IsNullOrWhiteSpace(text)
+             && !String.IsNullOrWhiteSpace(customer);
+             //&& !selectedProducts.Any();
         }
 
         public string Text
         {
             get => text;
             set => SetProperty(ref text, value);
+        }
+
+        public string Tax
+        {
+            get => tax;
+            set => SetProperty(ref tax, value);
+        }
+        public List<string> SelectedProducts
+        {
+            get => selectedProducts;
+            set => SetProperty(ref selectedProducts, value);
         }
 
         public DateTime Date
@@ -54,13 +119,20 @@ namespace PraNomi.ViewModels
             get => price;
             set => SetProperty(ref price, value);
         }
+        public string Customer
+        {
+            get => customer;
+            set => SetProperty(ref customer, value);
+        }
 
         public string CustomerName
         {
             get => customerName;
             set => SetProperty(ref customerName, value);
-        } 
-        public CustomerViewModel Customers
+        }
+
+        
+        public Customer Customers
         {
             get => customers;
             set => SetProperty(ref customers, value);
@@ -83,8 +155,11 @@ namespace PraNomi.ViewModels
                 Text = Text,
                 Date = new DateTime(Date.Year, Date.Month, Date.Day, Time.Hours, Time.Minutes, 0),
                 Price = Price,
-                CustomerName = CustomerName
-            
+                Customer = Customer,
+                CustomerName = Customer,
+                SelectedProducts = SelectedProducts,
+                Tax = Tax
+
             };
 
             await DataStore.AddItemAsync(newItem);

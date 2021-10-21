@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:controls="clr-namespace:EnumBindablePickerSample.Controls;assembly=EnumBindablePickerSample"
+               xmlns:enums="clr-namespace:EnumBindablePickerSample.Enumerations;assembly=EnumBindablePickerSample"
+             x:Class="PraNomi.Views.Page3">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout AbsoluteLayout.LayoutBounds = "0,0,1,1" AbsoluteLayout.LayoutFlags = "All">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+            
+                Spacing="3" Padding="15">
+              
+            <Label Text="Ürün Adı" FontSize="Medium" />
+            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+                        
+                        
+            <Label Text="Stok Kodu" FontSize="Medium" />
+            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+      
+                        
+            <Label Text="Para Birimi" FontSize="Medium" />
+            <Picker x:Name="CurrencyPicker" Title=" Para Birimi Seçin"    SelectedIndexChanged="CurrencyPicker_SelectedIndexChanged"/>
+
+            
+            <Label Text="Birim Fiyatı " FontSize="Medium" />
+            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Keyboard="Numeric" />
+
+                        
+            <Label Text="Kdv" FontSize="Medium" />
+            <Picker x:Name="MainPicker" Title="%Kdv Seçin" SelectedIndexChanged="MainPicker_SelectedIndexChanged"/>
+
+               
+            </StackLayout>
+            </ScrollView>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+
+
+  
+
+</ContentPage>
