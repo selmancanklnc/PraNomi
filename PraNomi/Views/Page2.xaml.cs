@@ -25,7 +25,7 @@ namespace PraNomi.Views
         {
             InitializeComponent();
 
-
+            //denemes
 
             this.BackgroundColor = Color.White;
 
