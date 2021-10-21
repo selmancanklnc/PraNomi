@@ -27,6 +27,8 @@ namespace PraNomi.Views
 
             //denemes
 
+            //DENEMEEEE
+
             this.BackgroundColor = Color.White;
 
 
