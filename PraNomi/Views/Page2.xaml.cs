@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PraNomi.Models;
+using PraNomi.Services;
 using PraNomi.ViewModels;
 using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
@@ -58,20 +59,27 @@ namespace PraNomi.Views
         }
         private void ColorSearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //var keyword = ColorSearchBar.Text;
-            //if (keyword.Length >= 1)
-            //{
-            //    var suggestions = model.ProductList.Where(c => c.UniqueIdentifier.ToLower().Contains(keyword.ToLower()));
+            var keyword = ColorSearchBar.Text;
+           if (keyword.Length >= 1)
+            {
+                ProductSearchModel searchModel = new ProductSearchModel()
+                {
+                    productSearchQuery = keyword,
+                    Page = 0,
+                    Size =10,
+                };
+                var productResult =  ProductServices.ProductList(searchModel);
+                // var suggestions = model.ProductList.Where(c => c.UniqueIdentifier.ToLower().Contains(keyword.ToLower()));
+              
+                listView.ItemsSource = productResult.products;
 
-            //    listView.ItemsSource = suggestions;
-
-            //    listView.IsVisible = true;
-            //}
-            //else
-            //{
-            //    listView.ItemsSource = model.ProductList;
-            //}
-            //ColorSearchBar.Focus();
+               listView.IsVisible = true;
+            }
+            else
+            {
+                listView.ItemsSource = model.ProductList;
+            }
+            ColorSearchBar.Focus();
         }
 
         protected override bool OnBackButtonPressed()

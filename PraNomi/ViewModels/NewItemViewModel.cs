@@ -21,7 +21,7 @@ namespace PraNomi.ViewModels
         private string customer;
         private string tax;
 
-        private CustomerViewModel customers;
+        private Customer customers;
         private List<string> selectedProducts = new List<string>();
         #region Fields
 
@@ -132,7 +132,7 @@ namespace PraNomi.ViewModels
         }
 
         
-        public CustomerViewModel Customers
+        public Customer Customers
         {
             get => customers;
             set => SetProperty(ref customers, value);
@@ -156,7 +156,7 @@ namespace PraNomi.ViewModels
                 Date = new DateTime(Date.Year, Date.Month, Date.Day, Time.Hours, Time.Minutes, 0),
                 Price = Price,
                 Customer = Customer,
-                CustomerName = CustomerName,
+                CustomerName = Customer,
                 SelectedProducts = SelectedProducts,
                 Tax = Tax
 

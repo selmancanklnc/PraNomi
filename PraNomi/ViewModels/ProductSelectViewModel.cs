@@ -13,7 +13,13 @@ namespace PraNomi.ViewModels
     {
         public ProductSelectViewModel(string selected)
         {
-            var productResult = ProductServices.ProductList(1, 1);
+            ProductSearchModel searchModel = new ProductSearchModel()
+            {
+               
+                Page =0,
+                Size = 10
+            };
+            var productResult = ProductServices.ProductList(searchModel);
             productList = productResult.products;
 
             Selected = selected ?? "";

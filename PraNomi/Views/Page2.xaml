@@ -8,7 +8,7 @@
                        BackgroundColor="LightGray"   
                        SearchButtonPressed="ColorSearchBar_SearchButtonPressed"
                        TextChanged="ColorSearchBar_TextChanged"/>
-        <Button Text="Yeni Ürün Ekle" Clicked="Button_Add_Product" HorizontalOptions="CenterAndExpand" Margin="0,10,0,0" BackgroundColor="Green"    />
+        <Button Text="Yeni Ürün Ekle" Clicked="Button_Add_Product" HorizontalOptions="CenterAndExpand" Margin="0,2,0,2" BackgroundColor="Green"    />
         <ListView x:Name="listView" >
             <ListView.ItemTemplate>
                 <DataTemplate>

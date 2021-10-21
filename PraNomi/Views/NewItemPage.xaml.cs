@@ -1,4 +1,5 @@
 ﻿using PraNomi.Models;
+using PraNomi.Services;
 using PraNomi.ViewModels;
 using PraNomi.Views;
 using Rg.Plugins.Popup.Extensions;
@@ -28,7 +29,7 @@ namespace PraNomi.Views
             {
                 Date = DateTime.Now,
                 Time = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, 0),
-                Customers = new CustomerViewModel()
+                Customers = new Customer()
 
 
             };
@@ -36,28 +37,17 @@ namespace PraNomi.Views
             BindingContext = model;
 
         }
-        public async void ListOfStore() //List of Countries  
+        public void ListOfStore() //List of Countries  
         {
-            try
+            CustomerSearchModel searchModel = new CustomerSearchModel()
             {
-                data.Add("Afghanistan");
-                data.Add("Austria");
-                data.Add("Australia");
-                data.Add("Azerbaijan");
-                data.Add("Bahrain");
-                data.Add("Bangladesh");
-                data.Add("Belgium");
-                data.Add("Botswana");
-                data.Add("China");
-                data.Add("Colombia");
-                data.Add("Denmark");
-                data.Add("Kmart");
-                data.Add("Pakistan");
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("", "" + ex, "Ok");
-            }
+
+                Page = 0,
+                Size = 10,
+            };
+            var customerResponse = CustomerServices.CustomerList(searchModel);
+            countryListView.ItemsSource = customerResponse.customers;
+
         }
         private void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)
         {
@@ -66,14 +56,21 @@ namespace PraNomi.Views
 
             try
             {
-                var dataEmpty = data.Where(i => i.ToLower().Contains(e.NewTextValue.ToLower()));
+                CustomerSearchModel searchModel = new CustomerSearchModel()
+                {
+                    customerSearchQuery = e.NewTextValue,
+                    Page = 0,
+                    Size = 10,
+                };
+                var customerResponse = CustomerServices.CustomerList(searchModel);
+                var customerList = customerResponse.customers;
 
                 if (string.IsNullOrWhiteSpace(e.NewTextValue))
                     countryListView.IsVisible = false;
-                else if (dataEmpty.Max().Length == 0)
+                else if (customerList.Count == 0)
                     countryListView.IsVisible = false;
                 else
-                    countryListView.ItemsSource = data.Where(i => i.ToLower().Contains(e.NewTextValue.ToLower()));
+                    countryListView.ItemsSource = customerList;
             }
             catch (Exception ex)
             {
@@ -89,9 +86,10 @@ namespace PraNomi.Views
         {
             //EmployeeListView.IsVisible = false;  
 
-            String listsd = e.Item as string;
-            searchBar.Text = listsd;
-            model.Customer = listsd;
+            var listsd = e.Item as Customer;
+            searchBar_2.Text = listsd.customerName;
+
+            model.Customer = listsd.customerName;
 
             countryListView.IsVisible = false;
 

@@ -14,36 +14,44 @@ namespace PraNomi.Services
     {
         private static ProductResponseModel responseModel;
 
-        public static ProductResponseModel ProductList(int page, int size)
+        public static ProductResponseModel ProductList(ProductSearchModel productSearchModel)
         {
 
 
-
-            using (var httpClient = new HttpClient())
+            try
             {
-                using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://api.pranomi.com/Product?size=10&page=1"))
+                using (var httpClient = new HttpClient())
                 {
-                    request.Version = HttpVersion.Version11;
-
-                    request.Headers.TryAddWithoutValidation("Authorization", "Basic cFZHZENQZTlUSlh6bkExaHZGTEdKdVBOWDVrc3hFcGZaM09SUEpiZ3VJQzpUMzJLRjVJNENaaWQ4YU9j");
-
-                    //   request.Content = new StringContent(JsonConvert.SerializeObject());
-
-                    using (var response = httpClient.SendAsync(request).Result)
+                    using (var request = new HttpRequestMessage(new HttpMethod("GET"), $"https://api.pranomi.com/Product/{productSearchModel.productSearchQuery}?page={productSearchModel.Page}&size={productSearchModel.Size}"))
                     {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string responseString = response.Content.ReadAsStringAsync().Result;
-                            responseModel = JsonConvert.DeserializeObject<ProductResponseModel>(responseString);
+                        request.Version = HttpVersion.Version11;
+                        //request.Content = new StringContent(JsonConvert.SerializeObject(productSearchModel));
+                        request.Headers.TryAddWithoutValidation("Authorization", "Basic cFZHZENQZTlUSlh6bkExaHZGTEdKdVBOWDVrc3hFcGZaM09SUEpiZ3VJQzpUMzJLRjVJNENaaWQ4YU9j");
 
+                        //   request.Content = new StringContent(JsonConvert.SerializeObject());
+
+                        using (var response = httpClient.SendAsync(request).Result)
+                        {
+                            if (response.IsSuccessStatusCode)
+                            {
+                                string responseString = response.Content.ReadAsStringAsync().Result;
+                                responseModel = JsonConvert.DeserializeObject<ProductResponseModel>(responseString);
+
+
+                            }
 
                         }
-
                     }
                 }
-            }
 
-            return responseModel;
+                return responseModel;
+            }
+            catch (Exception w)
+            {
+
+                throw;
+            }
+         
         }
 
     }

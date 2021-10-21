@@ -48,56 +48,55 @@
 
                 <StackLayout>
 
-                    <Entry TextChanged="SearchBar_OnTextChanged" 
+                    <Entry 
+                       TextChanged="SearchBar_OnTextChanged" 
                        BackgroundColor="#f9f9f9" 
                        TextColor="#FF464859" 
                        FontSize="16" 
                        WidthRequest="380"
                        PlaceholderColor="#646b7a" 
-                       x:Name="searchBar" 
+                       x:Name="searchBar_2" 
                        Placeholder="Müşteri Seçin" 
                        AbsoluteLayout.LayoutBounds="0,0,380,37" 
                        AbsoluteLayout.LayoutFlags="None"/>
-                <ListView x:Name="countryListView" 
+                   
+                <ListView 
+                          x:Name="countryListView" 
                           IsVisible="False"   
-                          CachingStrategy="RecycleElement" 
-                          BackgroundColor="White" 
+                          CachingStrategy="RecycleElement"
+                          BackgroundColor="White"
                           ItemTapped="ListView_OnItemTapped" 
+                          HasUnevenRows="True"
+                          HeightRequest="200"
                           AbsoluteLayout.LayoutBounds="0,37,380,160" 
                           AbsoluteLayout.LayoutFlags="None">
+                          
+                    
                     
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <Frame>
                                     <StackLayout BackgroundColor="White">
-                                        <Label Text="{Binding .}" FontSize="16" TextColor="#FF464859"/>
+                                       <Label  Text="{Binding customerName}" FontSize="16" TextColor="#FF464859"/>
                                     </StackLayout>
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
+                    
+                    
                 </ListView>
 
-              
-                        <Label  Text="Ürün" FontSize="Medium" Margin="0,5,0,5"/>
+                </StackLayout>
+            </AbsoluteLayout>
 
 
-
-
+            <Label  Text="Ürün" FontSize="Medium" Margin="0,5,0,5"/>
                     <Entry
                         Placeholder="Ürün Seçin" 
-                        Focused="Entry_Focused" x:Name="entry_2"
-                        >
-                        
+                        Focused="Entry_Focused" x:Name="entry_2">
                     </Entry>
-
-                  
-                        
-                        
-                        
-
-
 
                     <!--<Button Text="Ürün Ekle" Clicked="Button_Product"/>-->
 
@@ -140,19 +139,9 @@
 
                     </AbsoluteLayout>-->
 
- 
-
-                </StackLayout>
                
-            </AbsoluteLayout>
-
-            
-
-
-
-
-
-
+               
+          
 
             <!--<Grid>
                 <Grid.RowDefinitions>
@@ -201,7 +190,6 @@
                     </StackLayout>
                 </ScrollView>
             </Grid>-->
-
 
             <!--<Picker 
                 ItemDisplayBinding="{Binding CustomerName}" 

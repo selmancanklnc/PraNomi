@@ -19,6 +19,16 @@ namespace PraNomi.Models
         [JsonIgnore]
         public bool IsChecked { get; set; }
     }
+    public class ProductSearchModel
+    {
+     
+        public string productSearchQuery { get; set; }
+        [JsonProperty("page")]
+        public int? Page { get; set; }
+        [JsonProperty("size")]
+        public int? Size { get; set; }
+
+    }
 
     public class ProductResponseModel
     {
