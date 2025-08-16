@@ -26,7 +26,7 @@ namespace PraNomi.Services
                 {
                     request.Version = HttpVersion.Version11;
 
-                    request.Headers.TryAddWithoutValidation("Authorization", "Basic cFZHZENQZTlUSlh6bkExaHZGTEdKdVBOWDVrc3hFcGZaM09SUEpiZ3VJQzpUMzJLRjVJNENaaWQ4YU9j");
+                    request.Headers.TryAddWithoutValidation("Authorization", "Basic ...");
 
                     //   request.Content = new StringContent(JsonConvert.SerializeObject());
 
